@@ -2,11 +2,12 @@ import "../globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import { notFound } from "next/navigation";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
+import { Devtools, Providers } from "@/providers";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -43,9 +44,12 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
       lang={locale}
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
-      <NextIntlClientProvider>
-        <body className="flex min-h-full flex-col">{children}</body>
-      </NextIntlClientProvider>
+      <Providers>
+        <body className="flex min-h-full flex-col">
+          {children}
+          <Devtools />
+        </body>
+      </Providers>
     </html>
   );
 }
