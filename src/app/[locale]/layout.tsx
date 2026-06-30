@@ -1,5 +1,4 @@
 import "../globals.css";
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import { notFound } from "next/navigation";
@@ -31,10 +30,7 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
-export default async function RootLayout({
-  children,
-  params,
-}: Readonly<Props>) {
+export default async function RootLayout({ children, params }: Readonly<Props>) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
@@ -45,17 +41,10 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={cn(
-        "h-full",
-        "antialiased",
-        geistSans.variable,
-        geistMono.variable,
-        "font-sans",
-        inter.variable,
-      )}
+      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
       <NextIntlClientProvider>
-        <body className="min-h-full flex flex-col">{children}</body>
+        <body className="flex min-h-full flex-col">{children}</body>
       </NextIntlClientProvider>
     </html>
   );

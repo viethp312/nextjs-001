@@ -18,5 +18,5 @@ export default function Home({ params }: Props) {
 
   setRequestLocale(locale);
 
-  return <div>{t("title")}</div>;
+  return <div style={{ alignItems: "center" }}>{t("title")}</div>;
 }
