@@ -7,3 +7,14 @@ declare module "next-intl" {
     Messages: typeof messages;
   }
 }
+
+declare module "@tanstack/react-query" {
+  interface Register {
+    queryMeta: {
+      skipToastError?: boolean;
+    };
+    mutationMeta: {
+      skipToastError?: boolean;
+    };
+  }
+}

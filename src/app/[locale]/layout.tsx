@@ -8,6 +8,7 @@ import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { AppProvider, Devtools } from "@/providers";
+import { UIProvider } from "@/providers/ui.provider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -47,6 +48,7 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
       <AppProvider>
         <body className="flex min-h-full flex-col">
           {children}
+          <UIProvider />
           <Devtools />
         </body>
       </AppProvider>
