@@ -1,2 +1,2 @@
+export * from "./app.provider";
 export * from "./devtools";
-export * from "./providers";

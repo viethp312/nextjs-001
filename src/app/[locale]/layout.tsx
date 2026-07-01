@@ -7,7 +7,7 @@ import { setRequestLocale } from "next-intl/server";
 
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
-import { Devtools, Providers } from "@/providers";
+import { AppProvider, Devtools } from "@/providers";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -44,12 +44,12 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
       lang={locale}
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
-      <Providers>
+      <AppProvider>
         <body className="flex min-h-full flex-col">
           {children}
           <Devtools />
         </body>
-      </Providers>
+      </AppProvider>
     </html>
   );
 }
