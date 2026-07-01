@@ -1,5 +1,25 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Requirements
+
+This project pins its toolchain versions:
+
+- **Node.js**: `24.18.0` (see `.nvmrc`)
+- **pnpm**: `11.9.0` (see `packageManager` in `package.json`)
+
+Use the Node version from `.nvmrc`:
+
+```bash
+nvm use
+```
+
+Enable Corepack so pnpm resolves to the pinned version automatically:
+
+```bash
+corepack enable
+corepack use pnpm@11.9.0
+```
+
 ## Getting Started
 
 First, run the development server:
