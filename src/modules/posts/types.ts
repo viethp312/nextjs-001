@@ -7,9 +7,20 @@ export interface Post {
   body: string;
 }
 
+export interface GetPostsOptions {
+  params: {
+    locale: Locale;
+  };
+}
+
 export interface GetPostDetailOptions {
   id: number;
   params: {
     locale: Locale;
   };
+}
+
+export interface UpdatePostsOptions {
+  id: number;
+  body: Pick<Post, "title" | "body">;
 }

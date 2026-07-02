@@ -1,24 +1,26 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { useLocale } from "next-intl";
 
-import { getPostsOptions } from "@/modules/posts/api/query-options";
-import { PostCard } from "../components/post-card";
+import { getPostsOptions } from "@/modules/posts/api/posts.query";
+import { PostCard } from "@/modules/posts/ui/components/post-card";
 
 export function PostsView() {
-  const { data: posts, isLoading, isError, error } = useQuery(getPostsOptions());
+  const locale = useLocale();
+  const { data: posts, isPending, isError } = useQuery(getPostsOptions({ params: { locale } }));
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (isPending) {
+    return <div>Loading UI</div>;
   }
 
   if (isError) {
-    return <div>Error...</div>;
+    return <div>Error UI</div>;
   }
 
   return (
     <div className="grid grid-cols-3 gap-4">
-      {posts?.map((post) => (
+      {posts.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
     </div>

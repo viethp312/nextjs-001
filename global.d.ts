@@ -1,3 +1,5 @@
+import type { QueryKey } from "@tanstack/react-query";
+
 import type { routing } from "@/i18n/routing";
 import type messages from "./messages/en.json";
 
@@ -10,11 +12,9 @@ declare module "next-intl" {
 
 declare module "@tanstack/react-query" {
   interface Register {
-    queryMeta: {
-      skipToastError?: boolean;
-    };
     mutationMeta: {
       skipToastError?: boolean;
+      invalidateQueries?: QueryKey;
     };
   }
 }

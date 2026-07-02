@@ -40,6 +40,16 @@
             "functions": ["cn", "clsx", "cva", "tw", "tw.*"]
           }
         }
+      },
+      "correctness": {
+        "noUnusedImports": {
+          "level": "error",
+          "fix": "safe"
+        },
+        "noUnusedVariables": {
+          "level": "error",
+          "fix": "safe"
+        }
       }
     },
     "domains": {

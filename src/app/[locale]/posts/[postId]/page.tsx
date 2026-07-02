@@ -1,10 +1,9 @@
 import { QueryClient } from "@tanstack/react-query";
 import type { Metadata } from "next";
 import type { Locale } from "next-intl";
-import { use } from "react";
 
 import { routing } from "@/i18n/routing";
-import { getPostDetailOptions, getPostsOptions } from "@/modules/posts/api/query-options";
+import { getPostDetailOptions, getPostsOptions } from "@/modules/posts/api/posts.query";
 import { PostDetailView } from "@/modules/posts/ui/views/post-detail.view";
 import { getRandomImageUrl } from "@/utils/random-image";
 
@@ -14,7 +13,7 @@ type Props = {
 
 export async function generateStaticParams() {
   const queryClient = new QueryClient();
-  const posts = await queryClient.fetchQuery(getPostsOptions());
+  const posts = await queryClient.fetchQuery(getPostsOptions({ params: { locale: "en" } }));
 
   return routing.locales.flatMap((locale) =>
     posts.map((post) => ({

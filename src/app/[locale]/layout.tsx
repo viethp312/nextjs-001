@@ -1,10 +1,12 @@
 import "../globals.css";
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 
+import { MainLayout } from "@/components/layouts/main-layout";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { AppProvider, Devtools } from "@/providers";
@@ -46,8 +48,8 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
       <AppProvider>
-        <body className="flex min-h-full flex-col">
-          {children}
+        <body>
+          <MainLayout>{children}</MainLayout>
           <UIProvider />
           <Devtools />
         </body>
