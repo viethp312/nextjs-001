@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import type { Locale } from "next-intl";
 
-import { api } from "@/lib/api";
-import type { Album } from "@/modules/albums/type";
+import { routing } from "@/i18n/routing";
+import { getAlbums } from "@/modules/albums/api/albums.api";
+import { AlbumsView } from "@/modules/albums/ui/views/albums.view";
 
 type Props = {
   params: Promise<{ locale: Locale }>;
@@ -9,13 +11,22 @@ type Props = {
 
 export const revalidate = 60;
 
-export async function generateStaticParams() {
-  return [];
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Albums page ISR",
+    description: "Albums page ISR",
+  };
 }
 
-export default async function Albums({ params }: Props) {
-  const { locale } = await params;
+export async function generateStaticParams() {
+  return routing.locales.map((locale) => ({
+    locale,
+  }));
+}
 
-  const albums = await api.get<Album[]>("/albums", { searchParams: { locale } }).json();
-  return <div>{albums.length}</div>;
+export default async function AlbumsPage({ params }: Props) {
+  const { locale } = await params;
+  const albums = await getAlbums({ params: { locale } });
+
+  return <AlbumsView albums={albums} />;
 }

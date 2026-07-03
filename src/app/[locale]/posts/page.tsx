@@ -13,8 +13,8 @@ type Props = {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Posts page",
-    description: "Posts page",
+    title: "Posts page Client Side (prefetch)",
+    description: "Posts page Client Side (prefetch)",
   };
 }
 
